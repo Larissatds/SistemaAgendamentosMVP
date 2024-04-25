@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ServicoDTO>
+
+@{
+    ViewData["Title"] = "Gerenciamento de Serviços";
+}
+
+<div>
+    <h2>@ViewData["Title"]</h2>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="pull-left">
+                <a asp-action="Criar" class="btn btn-outline-dark">
+                    <i class="bi bi-journal-plus text-body" style="font-size: 20px;"></i>
+                    Cadastrar Serviço
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="panel panel-default">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.NomeServico)</th>
+                <th>@Html.DisplayNameFor(model => model.ValorServico)</th>
+                <th>@Html.DisplayNameFor(model => model.TempoGasto)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeServico)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorServico)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TempoGasto)
+                    </td>                  
+                    <td>
+                        <a asp-action="Editar" asp-route-id="@item.IdServico" title="Edit" class="btn btn-outline-dark">
+                            <span class="fas fa-edit">Editar</span>
+                        </a>
+
+                        <a asp-action="Excluir" asp-route-id="@item.IdServico" title="Delete" class="btn btn-outline-dark">
+                            <span class="fas fa-trash-alt">Excluir</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,24 @@
+﻿@model AgendamentoDTO
+
+<h3>Excluir Agendamento</h3>
+
+<h4>Confirmar exclusão do registro?</h4>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Cliente.Nome)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Cliente.Nome)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Servico.NomeServico)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Servico.NomeServico)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.DataHoraAgendada)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.DataHoraAgendada)</dd>
+    </dl>
+
+    <form asp-action="Excluir">
+        <input type="hidden" asp-for="IdAgendamento" />
+        <input type="submit" value="Excluir" class="btn btn-outline-dark" />
+        <a asp-action="Index" class="btn btn-outline-dark">Voltar</a>
+    </form>
+</div>

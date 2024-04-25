@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AgendaSalaoMVP.Application\AgendaSalaoMVP.Application.csproj" />
+    <ProjectReference Include="..\AgendaSalaoMVP.Data\AgendaSalaoMVP.Infra.Data.csproj" />
+    <ProjectReference Include="..\AgendaSalaoMVP.Domain\AgendaSalaoMVP.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

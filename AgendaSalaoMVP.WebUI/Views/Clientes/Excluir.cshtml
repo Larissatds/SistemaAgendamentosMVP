@@ -1,0 +1,40 @@
+﻿@model ClienteDTO
+
+<h3>Excluir Cliente</h3>
+
+<h4>Confirmar exclusão do registro?</h4>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Nome)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Nome)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.DataNascimento)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.DataNascimento)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Endereco)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Endereco)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Bairro)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Bairro)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Cidade)/@Html.DisplayNameFor(model => model.Estado)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Cidade)/@Html.DisplayFor(model => model.Estado)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Cep)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Cep)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Telefone)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Telefone)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Email)</dd>
+
+    </dl>
+
+    <form asp-action="Excluir">
+        <input type="hidden" asp-for="IdCliente" />
+        <input type="submit" value="Excluir" class="btn btn-outline-dark" />
+        <a asp-action="Index" class="btn btn-outline-dark">Voltar</a>
+    </form>
+</div>
