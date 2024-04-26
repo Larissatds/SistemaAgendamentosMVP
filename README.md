@@ -15,7 +15,7 @@ Para clonar e executar este projeto localmente, siga estas etapas:
 
 3. Navegue até o diretório do projeto:
 ```bash
-  cd seu-repositorio
+  cd SistemaAgendamentosMVP
 ```
 
 4. Abra a solução no Visual Studio ou execute o seguinte comando para iniciar o projeto:
