@@ -4,67 +4,69 @@
     ViewData["Title"] = "Gerenciamento de Clientes";
 }
 
-<div>
-    <h2>@ViewData["Title"]</h2>
-</div>
-<hr />
-<div class="row">
-    <div class="col-md-12">
-        <div>
-            <div class="pull-left">
-                <a asp-action="Criar" class="btn btn-outline-dark">
-                    <i class="bi bi-journal-plus text-body" style="font-size: 20px;"></i>
-                    Cadastrar Cliente
-                </a>
+<div class="pt-5">
+    <div>
+        <h2>@ViewData["Title"]</h2>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <div class="pull-left">
+                    <a asp-action="Criar" class="btn btn-padrao">
+                        <i class="bi bi-journal-plus icon-padrao"></i>
+                        Cadastrar Cliente
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<br />
-<div class="panel panel-default">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Nome)</th>
-                <th>@Html.DisplayNameFor(model => model.DataNascimento)</th>
-                <th>@Html.DisplayNameFor(model => model.Telefone)</th>
-                <th>@Html.DisplayNameFor(model => model.Email)</th>
-                <th>@Html.DisplayNameFor(model => model.Endereco)</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <br />
+    <div class="panel panel-default">
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataNascimento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Telefone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        <a asp-action="Detalhe" asp-route-id="@item.IdCliente" title="Endereço" class="btn btn btn-link">
-                            <i class="bi bi-house-fill text-body" style="font-size: 20px;"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a asp-action="Editar" asp-route-id="@item.IdCliente" title="Edit" class="btn btn-outline-dark">
-                            <span class="fas fa-edit">Editar</span>
-                        </a>
-
-                        <a asp-action="Excluir" asp-route-id="@item.IdCliente" title="Delete" class="btn btn-outline-dark">
-                            <span class="fas fa-trash-alt">Excluir</span>
-                        </a>
-                    </td>
+                    <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                    <th>@Html.DisplayNameFor(model => model.DataNascimento)</th>
+                    <th>@Html.DisplayNameFor(model => model.Telefone)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th>@Html.DisplayNameFor(model => model.Endereco)</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="clear-text-color">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataNascimento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            <a asp-action="Detalhe" asp-route-id="@item.IdCliente" title="Endereço" class="btn btn btn-link">
+                                <i class="bi bi-house-fill icon-padrao"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@item.IdCliente" title="Edit" class="btn btn-padrao">
+                                <span class="fas fa-edit">Editar</span>
+                            </a>
+
+                            <a asp-action="Excluir" asp-route-id="@item.IdCliente" title="Delete" class="btn btn-padrao">
+                                <span class="fas fa-trash-alt">Excluir</span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

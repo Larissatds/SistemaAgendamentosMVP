@@ -1,24 +1,26 @@
 ﻿@model AgendamentoDTO
 
-<h3>Excluir Agendamento</h3>
+<div class="pt-5">
+    <h3>Excluir Agendamento</h3>
 
-<h4>Confirmar exclusão do registro?</h4>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Cliente.Nome)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Cliente.Nome)</dd>
+    <h4>Confirmar exclusão do registro?</h4>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Cliente.Nome)</dt>
+            <dd class="col-sm-10 clear-text-color">@Html.DisplayFor(model => model.Cliente.Nome)</dd>
 
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Servico.NomeServico)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Servico.NomeServico)</dd>
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Servico.NomeServico)</dt>
+            <dd class="col-sm-10 clear-text-color">@Html.DisplayFor(model => model.Servico.NomeServico)</dd>
 
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.DataHoraAgendada)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.DataHoraAgendada)</dd>
-    </dl>
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.DataHoraAgendada)</dt>
+            <dd class="col-sm-10 clear-text-color">@Html.DisplayFor(model => model.DataHoraAgendada)</dd>
+        </dl>
 
-    <form asp-action="Excluir">
-        <input type="hidden" asp-for="IdAgendamento" />
-        <input type="submit" value="Excluir" class="btn btn-outline-dark" />
-        <a asp-action="Index" class="btn btn-outline-dark">Voltar</a>
-    </form>
+        <form asp-action="Excluir">
+            <input type="hidden" asp-for="IdAgendamento" />
+            <input type="submit" value="Excluir" class="btn btn-padrao" />
+            <a asp-action="Index" class="btn btn-padrao">Voltar</a>
+        </form>
+    </div>
 </div>

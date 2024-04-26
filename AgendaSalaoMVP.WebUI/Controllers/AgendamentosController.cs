@@ -41,7 +41,14 @@ namespace AgendaSalaoMVP.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Criar(AgendamentoDTO agendamentoDto)
         {
-            if (ModelState.IsValid)
+            var horarioDisponivel = await _agendamentoIntegracaoService.ValidarAgendaDisponivel
+                                            (
+                                                dataHoraAgendada: agendamentoDto.DataHoraAgendada, 
+                                                idServico: agendamentoDto.IdServico,
+                                                idAgendamento: null
+                                            );
+
+            if (ModelState.IsValid && horarioDisponivel)
             {
                 await _agendamentoIntegracaoService.Criar(agendamentoDto);
                 return RedirectToAction(nameof(Index));
@@ -55,6 +62,11 @@ namespace AgendaSalaoMVP.WebUI.Controllers
                 var selectServico = await _agendamentoIntegracaoService.ServicoSelectList();
 
                 ViewBag.Servicos = new SelectList(selectServico, "Value", "Text");
+
+                if (!horarioDisponivel)
+                {
+                    ModelState.AddModelError("DataHoraAgendada", "Horário indisponível.");
+                }
             }
             return View(agendamentoDto);
         }
@@ -85,7 +97,14 @@ namespace AgendaSalaoMVP.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Editar(AgendamentoDTO agendamentoDto)
         {
-            if (ModelState.IsValid)
+            var horarioDisponivel = await _agendamentoIntegracaoService.ValidarAgendaDisponivel
+                                            (
+                                                dataHoraAgendada: agendamentoDto.DataHoraAgendada,
+                                                idServico: agendamentoDto.IdServico,
+                                                idAgendamento: agendamentoDto.IdAgendamento
+                                            );
+
+            if (ModelState.IsValid && horarioDisponivel)
             {
                 await _agendamentoIntegracaoService.Editar(agendamentoDto);
                 return RedirectToAction(nameof(Index));
@@ -99,6 +118,11 @@ namespace AgendaSalaoMVP.WebUI.Controllers
                 var selectServico = await _agendamentoIntegracaoService.ServicoSelectList();
 
                 ViewBag.Servicos = new SelectList(selectServico, "Value", "Text");
+
+                if (!horarioDisponivel)
+                {
+                    ModelState.AddModelError("DataHoraAgendada", "Horário indisponível.");
+                }
             }
 
             return View(agendamentoDto);

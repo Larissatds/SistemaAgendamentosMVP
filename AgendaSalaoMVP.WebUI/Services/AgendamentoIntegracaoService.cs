@@ -1,4 +1,5 @@
 ﻿using AgendaSalaoMVP.Application.DTOs;
+using AgendaSalaoMVP.Domain.Entities;
 using AgendaSalaoMVP.Domain.Interfaces;
 using AgendaSalaoMVP.WebUI.Interfaces;
 using Newtonsoft.Json;
@@ -9,20 +10,20 @@ namespace AgendaSalaoMVP.WebUI.Services
 {
     public class AgendamentoIntegracaoService : IAgendamentoIntegracaoService
     {
-        private readonly IClienteRepository _clienteRepository;
-        private readonly IServicoRepository _servicoRepository;
+        private readonly IClienteIntegracaoService _clienteIntegracaoService;
+        private readonly IServicoIntegracaoService _servicoIntegracaoService;
 
         Uri url = new Uri("https://localhost:7168/api/agendamentos");
         private readonly HttpClient _httpClient;
 
         public AgendamentoIntegracaoService
             (
-                IClienteRepository clienteRepository,
-                IServicoRepository servicoRepository
+                IClienteIntegracaoService clienteIntegracaoService,
+                IServicoIntegracaoService servicoIntegracaoService
             )
         {
-            _clienteRepository = clienteRepository;
-            _servicoRepository = servicoRepository;
+            _clienteIntegracaoService = clienteIntegracaoService;
+            _servicoIntegracaoService = servicoIntegracaoService;
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = url;
         }
@@ -114,7 +115,7 @@ namespace AgendaSalaoMVP.WebUI.Services
 
         public async Task<IEnumerable<SelectListItem>> ClienteSelectList()
         {
-            var clientes = await _clienteRepository.ObterClientesAsync();
+            var clientes = await _clienteIntegracaoService.Obter();
             var selectListCliente = new List<SelectListItem>
                  {
                      new SelectListItem { Value = "", Text = "Selecione um cliente" }
@@ -133,7 +134,7 @@ namespace AgendaSalaoMVP.WebUI.Services
 
         public async Task<IEnumerable<SelectListItem>> ServicoSelectList()
         {
-            var servicos = await _servicoRepository.ObterServicosAsync();
+            var servicos = await _servicoIntegracaoService.Obter();
             var selectListServico = new List<SelectListItem>
                  {
                      new SelectListItem { Value = "", Text = "Selecione um serviço" }
@@ -148,6 +149,30 @@ namespace AgendaSalaoMVP.WebUI.Services
                 }));
 
             return selectListServico;
+        }
+
+        public async Task<bool> ValidarAgendaDisponivel(DateTime dataHora, decimal idServico, decimal? idAgendamento)
+        {
+            var agendamentos = await this.Obter();
+            var agendamento = agendamentos.Where(a => a.DataHoraAgendada.Equals(dataHora)).FirstOrDefault();       
+
+            if (agendamento != null && agendamento?.IdAgendamento > 0)
+            {
+                return false;
+            }
+
+            foreach(var i in agendamentos.Where(a => a.IdAgendamento != idAgendamento))
+            {
+                var servico = await _servicoIntegracaoService.ObterPorId(id: i.IdServico);
+                var horaTermino = i.DataHoraAgendada.AddMinutes(servico.TempoGasto.TotalMinutes);
+
+                if(dataHora > i.DataHoraAgendada && dataHora < horaTermino)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

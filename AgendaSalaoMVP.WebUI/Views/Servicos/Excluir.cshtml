@@ -1,24 +1,26 @@
 ﻿@model ServicoDTO
 
-<h3>Excluir Serviço</h3>
+<div class="pt-5">
+    <h3>Excluir Serviço</h3>
 
-<h4>Confirmar exclusão do registro?</h4>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.NomeServico)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.NomeServico)</dd>
+    <h4>Confirmar exclusão do registro?</h4>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.NomeServico)</dt>
+            <dd class="col-sm-10 clear-text-color">@Html.DisplayFor(model => model.NomeServico)</dd>
 
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ValorServico)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.ValorServico)</dd>
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ValorServico)</dt>
+            <dd class="col-sm-10 clear-text-color">@Html.DisplayFor(model => model.ValorServico)</dd>
 
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TempoGasto)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.TempoGasto)</dd>
-    </dl>
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TempoGasto)</dt>
+            <dd class="col-sm-10 clear-text-color">@Html.DisplayFor(model => model.TempoGasto)</dd>
+        </dl>
 
-    <form asp-action="Excluir">
-        <input type="hidden" asp-for="IdServico" />
-        <input type="submit" value="Excluir" class="btn btn-outline-dark" />
-        <a asp-action="Index" class="btn btn-outline-dark">Voltar</a>
-    </form>
+        <form asp-action="Excluir">
+            <input type="hidden" asp-for="IdServico" />
+            <input type="submit" value="Excluir" class="btn btn-padrao " />
+            <a asp-action="Index" class="btn btn-padrao ">Voltar</a>
+        </form>
+    </div>
 </div>

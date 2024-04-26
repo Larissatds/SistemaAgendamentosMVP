@@ -19,5 +19,7 @@ namespace AgendaSalaoMVP.WebUI.Interfaces
         Task<IEnumerable<SelectListItem>> ClienteSelectList();
 
         Task<IEnumerable<SelectListItem>> ServicoSelectList();
+
+        Task<bool> ValidarAgendaDisponivel(DateTime dataHoraAgendada, decimal idServico, decimal? idAgendamento);
     }
 }
